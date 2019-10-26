@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  nifi:
+    image: tests/nifi
+    build: .
+    ports:
+      - 8080:8080
+    volumes: 
+      - //conf:/opt/nifi/conf 

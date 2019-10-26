@@ -1,0 +1,16 @@
+version: '3.1'
+services:
+ minio1:
+  #image: dbranizor/dsb:minio
+  image: dsb-minio:v1
+  volumes:
+   - "$MINIO_DIR:/data"
+  ports:
+   - "9001:9000"
+  environment:
+   MINIO_ACCESS_KEY: minio
+   MINIO_SECRET_KEY: minio123
+   MINIO_HOST_URI: http://192.168.99.100
+   MINIO_HOST_PORT: 9001
+  command: server /data
+  

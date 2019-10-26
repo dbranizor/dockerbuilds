@@ -1,0 +1,1 @@
+docker build -t dsb-postgres:latest .

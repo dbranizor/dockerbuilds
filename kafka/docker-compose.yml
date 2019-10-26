@@ -1,0 +1,34 @@
+version: '3'
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper:latest
+    expose:
+    - "2181"
+  kafkaserver:
+    depends_on:
+    - zookeeper
+    image: wurstmeister/kafka:latest
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.99.100:9092
+      KAFKA_ADVERTISED_HOST_NAME: ${ADVERTISED_HOST:-192.168.99.100}
+      ADVERTISED_PORT: ${ADVERTISED_PORT:-9092}
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_CREATE_TOPICS: "tweets:1:1"
+    ports: 
+      - "9092:9092" 
+  # kafka_manager:
+  #   image: "mzagar/kafka-manager-docker:1.3.3.4"
+  #   container_name: kafkamanager
+  #   networks:
+  #     - kafkanet
+  #   ports:
+  #     - 9000:9000
+  #   links:
+  #     - kafkaserver
+  #   environment:
+  #     ZK_HOSTS: "192.168.99.100:2181"
+
+networks:
+  kafkanet:
+    driver: bridge
+      

@@ -1,0 +1,19 @@
+version: '3.1'
+services:
+ minio:
+  image: dbranizor/dsb:minio-mc
+  # image: dsb-minio-mc:v1
+  environment:
+    MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY:-minio}
+    MINIO_SECRET_KEY: ${MINIO_SECRET_KEY:-minio123}
+    MINIO_HOST_URI: ${MINIO_HOST_URI:-http://192.168.99.100}
+    MINIO_HOST_PORT: ${MINIO_HOST_PORT:-9001}
+  entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc config host add myminio ${MINIO_HOST_URI} ${MINIO_ACCESS_KEY} ${MINIO_SECRET_KEY};
+      /usr/bin/mc rm -r --force myminio/somebucketname;
+      /usr/bin/mc mb myminio/somebucketname;
+      /usr/bin/mc policy download myminio/somebucketname;
+      exit 0;
+      "
+  

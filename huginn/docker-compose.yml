@@ -1,0 +1,11 @@
+version: '3'
+services:
+  huginn_1:
+    build: .
+    environment:
+      - SMTP_USER_NAME='derek.branizor@gmail.com'
+    volumes:
+      - "./:/var/lib/mysql"
+    ports: 
+      - "3000:3000"
+      

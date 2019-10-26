@@ -1,0 +1,1 @@
+docker build -t dsb-minio-mc:v1 .
