@@ -2,11 +2,11 @@
 version: '3.1'
 services:
   db:
-    image: dsb-postgres:v1
+    image: dbranizor/dsb:postgres-11.4-v2
     restart: always
     ports:
-      - 5432:5432
+      - 5433:5432
+    volumes: 
+      - ~/storage/kc:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: "${PG_PASSWORD}"
-      POSTGRES_USER: "${PG_USER}"
       POSTGRES_DB: "castello"

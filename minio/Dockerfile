@@ -7,4 +7,3 @@ LABEL dsb.minio.release-date="2019-07-10T00-34-56Z"
 LABEL dsb.minio.version.is-production=""
 # Environment labels
 
-COPY /bin/entrypoint.sh /usr/bin/entrypoint.sh

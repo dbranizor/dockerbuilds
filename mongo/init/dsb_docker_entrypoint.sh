@@ -31,4 +31,4 @@ echo "Shutting down"
 echo "************************************************************"
 nohup gosu mongodb mongo admin --eval "db.shutdownServer();"
 
-gosu mongodb mongod --dbpath=/data/db  --bind_ip_all --auth
+gosu mongodb mongod --dbpath=/data/db  --bind_ip_all
